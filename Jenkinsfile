@@ -50,9 +50,9 @@ pipeline {
             steps {
                 dir(traineeCode) {
                     script {
-                        traineeAccount = getComitter()
-                        traineeEmail = getComitterEmail()
-                        exercise = env.BRANCH_NAME
+                        traineeAccount = getComitter().trim()
+                        traineeEmail = getComitterEmail().trim()
+                        exercise = env.BRANCH_NAME.minus(traineeAccount + '/')
                     }
                 }
             }
@@ -143,9 +143,9 @@ pipeline {
         stage('Report') {
             agent any
             steps {
-                fass(traineeAccount: "${traineeAccount}", exercise: "${exercise.minus(traineeAccount + '/' + traineeCode)}")
+                fass(traineeAccount: "${traineeAccount}", exercise: "${exercise}")
                 emailext(body: '''${SCRIPT, template="report-email-02.gsp"}''',
-                        subject: "[Fresher Academy] Your work report",
+                        subject: "[Fresher Academy] Hi ${traineeAccount}, Your work report has arrived",
                         to: "${traineeEmail}",
                         replyTo: "${traineeEmail}",
                         recipientProviders: [[$class: 'CulpritsRecipientProvider']])
