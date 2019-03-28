@@ -62,12 +62,12 @@ pipeline {
             when {
                 anyOf {
                     expression {
-                        !TRAINEE_LIST.contains(traineeAccount)
+		    	not { TRAINEE_LIST.contains(traineeAccount) }
                     }
                 }
             }
             steps {
-                echo 'Trainee is not in Trainee List. Make sure you have config Git username properly'
+                echo "Trainee is not in Trainee List. Make sure you have config Git username properly: traineeAccount ${traineeAccount}"
                 sh 'exit 1'
             }
         }
