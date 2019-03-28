@@ -62,7 +62,7 @@ pipeline {
             when {
                 anyOf {
                     expression {
-		    	        not { TRAINEE_LIST.contains(traineeAccount) }
+		    	        TRAINEE_LIST.contains(traineeAccount) == false
                     }
                 }
             }
