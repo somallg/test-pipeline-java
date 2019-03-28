@@ -14,7 +14,7 @@ def traineeCode = 'trainee-code'
 
 def testCode = 'test-code'
 
-def TRAINEE_LIST = ['duongtq', 'tuanna']
+def TRAINEE_LIST = ['duongtq', 'tuanna', 'somallg']
 def EXCERCISE_LIST = ['exo1', 'exo2']
 
 pipeline {
